@@ -119,11 +119,13 @@ module "ec2" {
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.62 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
+The following requirements are needed by this module:
+
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.0)
+
+- <a name="requirement_aws"></a> [aws](#requirement\_aws) (~> 5.62)
+
+- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.6)
 
 ## Modules
 
@@ -174,33 +176,76 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_instance.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_secretsmanager_secret.os_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret_version.os_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
-| [random_password.os_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+The following resources are used by this module:
+
+- [aws_instance.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) (resource)
+- [aws_secretsmanager_secret.os_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) (resource)
+- [aws_secretsmanager_secret_version.os_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) (resource)
+- [random_password.os_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) (resource)
+- [aws_ami.amazon_linux](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) (data source)
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_ami"></a> [ami](#output\_ami) | AMI ID that was used to create the instance |
-| <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the instance |
-| <a name="output_availability_zone"></a> [availability\_zone](#output\_availability\_zone) | The availability zone of the created instance |
-| <a name="output_id"></a> [id](#output\_id) | The ID of the instance |
-| <a name="output_instance_state"></a> [instance\_state](#output\_instance\_state) | The state of the instance |
-| <a name="output_os_credentials"></a> [os\_credentials](#output\_os\_credentials) | Map of user names and passwords generated or configured for the instance |
-| <a name="output_os_credentials_secret_arn"></a> [os\_credentials\_secret\_arn](#output\_os\_credentials\_secret\_arn) | The ARN of the Secrets Manager secret storing the OS user credentials |
-| <a name="output_os_credentials_secret_id"></a> [os\_credentials\_secret\_id](#output\_os\_credentials\_secret\_id) | The ID of the Secrets Manager secret storing the OS user credentials |
-| <a name="output_primary_network_interface_id"></a> [primary\_network\_interface\_id](#output\_primary\_network\_interface\_id) | The ID of the instance's primary network interface |
-| <a name="output_private_dns"></a> [private\_dns](#output\_private\_dns) | The private DNS name assigned to the instance |
-| <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | The private IP address assigned to the instance |
-| <a name="output_public_dns"></a> [public\_dns](#output\_public\_dns) | The public DNS name assigned to the instance |
-| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | The public IP address assigned to the instance |
-| <a name="output_tags_all"></a> [tags\_all](#output\_tags\_all) | A map of tags assigned to the resource, including those inherited from the provider default\_tags configuration block |
+The following outputs are exported:
+
+### <a name="output_ami"></a> [ami](#output\_ami)
+
+Description: AMI ID that was used to create the instance
+
+### <a name="output_arn"></a> [arn](#output\_arn)
+
+Description: The ARN of the instance
+
+### <a name="output_availability_zone"></a> [availability\_zone](#output\_availability\_zone)
+
+Description: The availability zone of the created instance
+
+### <a name="output_id"></a> [id](#output\_id)
+
+Description: The ID of the instance
+
+### <a name="output_instance_state"></a> [instance\_state](#output\_instance\_state)
+
+Description: The state of the instance
+
+### <a name="output_os_credentials"></a> [os\_credentials](#output\_os\_credentials)
+
+Description: Map of user names and passwords generated or configured for the instance
+
+### <a name="output_os_credentials_secret_arn"></a> [os\_credentials\_secret\_arn](#output\_os\_credentials\_secret\_arn)
+
+Description: The ARN of the Secrets Manager secret storing the OS user credentials
+
+### <a name="output_os_credentials_secret_id"></a> [os\_credentials\_secret\_id](#output\_os\_credentials\_secret\_id)
+
+Description: The ID of the Secrets Manager secret storing the OS user credentials
+
+### <a name="output_primary_network_interface_id"></a> [primary\_network\_interface\_id](#output\_primary\_network\_interface\_id)
+
+Description: The ID of the instance's primary network interface
+
+### <a name="output_private_dns"></a> [private\_dns](#output\_private\_dns)
+
+Description: The private DNS name assigned to the instance
+
+### <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip)
+
+Description: The private IP address assigned to the instance
+
+### <a name="output_public_dns"></a> [public\_dns](#output\_public\_dns)
+
+Description: The public DNS name assigned to the instance
+
+### <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip)
+
+Description: The public IP address assigned to the instance
+
+### <a name="output_tags_all"></a> [tags\_all](#output\_tags\_all)
+
+Description: A map of tags assigned to the resource, including those inherited from the provider default\_tags configuration block
 
 <!-- markdownlint-enable -->
+<!-- markdownlint-disable MD041 -->
 ## External Documentation
 
 The following external documentation was used to develop this configuration:
