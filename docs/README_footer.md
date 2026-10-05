@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 -->
 ## External Documentation
 
 The following external documentation was used to develop this configuration:
