@@ -8,7 +8,7 @@ variables {
   subnet_id     = "subnet-12345678"
 }
 
-run "validate_default_creation" {
+run "validate_default_creation_auto_generates_secret" {
   command = plan
 
   assert {
@@ -17,26 +17,28 @@ run "validate_default_creation" {
   }
 
   assert {
-    condition     = length(aws_secretsmanager_secret.os_credentials) == 0
-    error_message = "Secrets Manager secret should not be created by default"
-  }
-}
-
-run "validate_os_credentials_secret_creation" {
-  command = plan
-
-  variables {
-    create_os_credentials_secret = true
-  }
-
-  assert {
     condition     = length(aws_secretsmanager_secret.os_credentials) == 1
-    error_message = "Secrets Manager secret should be planned for creation"
+    error_message = "Secrets Manager secret should be created automatically when credentials are not provided"
   }
 
   assert {
     condition     = aws_secretsmanager_secret.os_credentials[0].name == "demo/linux/test-instance"
     error_message = "Secret name does not match expected default format"
+  }
+}
+
+run "validate_provided_credentials_without_secret" {
+  command = plan
+
+  variables {
+    os_credentials = {
+      admin = "ProvidedPassword123!"
+    }
+  }
+
+  assert {
+    condition     = length(aws_secretsmanager_secret.os_credentials) == 0
+    error_message = "Secrets Manager secret should not be created when explicit credentials are provided without create_os_credentials_secret"
   }
 }
 

@@ -69,6 +69,6 @@ output "os_credentials_secret_id" {
 
 output "os_credentials" {
   description = "Map of user names and passwords generated or configured for the instance"
-  value       = var.create_os_credentials_secret ? local.final_os_credentials : null
+  value       = local.create_secret ? local.final_os_credentials : null
   sensitive   = true
 }

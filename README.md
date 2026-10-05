@@ -207,7 +207,7 @@ Default: `true`
 
 ### <a name="input_create_os_credentials_secret"></a> [create\_os\_credentials\_secret](#input\_create\_os\_credentials\_secret)
 
-Description: (Optional) Controls whether to generate random passwords for OS user accounts and store them in AWS Secrets Manager.
+Description: (Optional) Explicitly controls whether to store OS credentials in AWS Secrets Manager. Note: If credentials are not provided in `os_credentials`, secrets are automatically generated and stored in Secrets Manager.
 
 Type: `bool`
 
@@ -303,7 +303,7 @@ Default: `null`
 
 ### <a name="input_os_credentials"></a> [os\_credentials](#input\_os\_credentials)
 
-Description: (Optional) Map of user names to explicit passwords. If a username is mapped to null, a random password will be auto-generated.
+Description: (Optional) Map of user names to explicit passwords. If omitted or if a username is mapped to null, a random password will be automatically generated and stored in AWS Secrets Manager.
 
 Type: `map(string)`
 

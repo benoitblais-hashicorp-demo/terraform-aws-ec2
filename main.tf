@@ -26,11 +26,18 @@ locals {
 
   is_t_instance_type = replace(var.instance_type, "/^t(2|3|3a|4g){1}\\..*$/", "1") == "1" ? true : false
 
-  # OS credentials handling
+  # OS credentials handling:
+  # When credentials are not provided (empty map) or a user's password is null,
+  # auto-generate random passwords and store them in AWS Secrets Manager.
   default_os_users = {
     linuxadmin = null
   }
   configured_os_users = length(var.os_credentials) > 0 ? var.os_credentials : local.default_os_users
+
+  # Needs secret creation if explicitly enabled OR if credentials were not provided (empty var.os_credentials)
+  # OR if any user's password is not provided (null).
+  needs_generated_credentials = length(var.os_credentials) == 0 || contains([for pass in values(local.configured_os_users) : pass == null], true)
+  create_secret               = local.create && (var.create_os_credentials_secret || local.needs_generated_credentials)
 
   # Determine secret name
   secret_name = coalesce(var.secret_name, "demo/linux/${var.name}")
@@ -44,13 +51,13 @@ locals {
 }
 
 ################################################################################
-# Secrets Manager & Random Passwords (Optional)
+# Secrets Manager & Random Passwords
 ################################################################################
 
 resource "random_password" "os_password" {
   for_each = {
     for user, pass in local.configured_os_users : user => pass
-    if local.create && var.create_os_credentials_secret && pass == null
+    if local.create && pass == null
   }
 
   length           = 32
@@ -59,7 +66,7 @@ resource "random_password" "os_password" {
 }
 
 resource "aws_secretsmanager_secret" "os_credentials" {
-  count = local.create && var.create_os_credentials_secret ? 1 : 0
+  count = local.create_secret ? 1 : 0
 
   name                    = local.secret_name
   description             = var.secret_description
@@ -69,7 +76,7 @@ resource "aws_secretsmanager_secret" "os_credentials" {
 }
 
 resource "aws_secretsmanager_secret_version" "os_credentials" {
-  count = local.create && var.create_os_credentials_secret ? 1 : 0
+  count = local.create_secret ? 1 : 0
 
   secret_id     = aws_secretsmanager_secret.os_credentials[0].id
   secret_string = jsonencode(local.final_os_credentials)

@@ -58,7 +58,7 @@ variable "create" {
 }
 
 variable "create_os_credentials_secret" {
-  description = "(Optional) Controls whether to generate random passwords for OS user accounts and store them in AWS Secrets Manager."
+  description = "(Optional) Explicitly controls whether to store OS credentials in AWS Secrets Manager. Note: If credentials are not provided in `os_credentials`, secrets are automatically generated and stored in Secrets Manager."
   type        = bool
   default     = false
 }
@@ -128,7 +128,7 @@ variable "monitoring" {
 }
 
 variable "os_credentials" {
-  description = "(Optional) Map of user names to explicit passwords. If a username is mapped to null, a random password will be auto-generated."
+  description = "(Optional) Map of user names to explicit passwords. If omitted or if a username is mapped to null, a random password will be automatically generated and stored in AWS Secrets Manager."
   type        = map(string)
   default     = {}
 }
