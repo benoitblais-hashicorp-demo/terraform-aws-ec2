@@ -142,7 +142,7 @@ No modules.
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | (Optional) The AWS region to deploy the EC2 instance into. | `string` | `"ca-central-1"` | no |
 | <a name="input_cpu_credits"></a> [cpu\_credits](#input\_cpu\_credits) | (Optional) The credit option for CPU usage (unlimited or standard). | `string` | `null` | no |
 | <a name="input_create"></a> [create](#input\_create) | (Optional) Whether to create an instance. | `bool` | `true` | no |
-| <a name="input_create_os_credentials_secret"></a> [create\_os\_credentials\_secret](#input\_create\_os\_credentials\_secret) | (Optional) Controls whether to generate random passwords for OS user accounts and store them in AWS Secrets Manager. | `bool` | `false` | no |
+| <a name="input_create_os_credentials_secret"></a> [create\_os\_credentials\_secret](#input\_create\_os\_credentials\_secret) | (Optional) Explicitly controls whether to store OS credentials in AWS Secrets Manager. Note: If credentials are not provided in `os_credentials`, secrets are automatically generated and stored in Secrets Manager. | `bool` | `false` | no |
 | <a name="input_disable_api_termination"></a> [disable\_api\_termination](#input\_disable\_api\_termination) | (Optional) If true, enables EC2 Instance Termination Protection. | `bool` | `null` | no |
 | <a name="input_ebs_block_device"></a> [ebs\_block\_device](#input\_ebs\_block\_device) | (Optional) Additional EBS block devices to attach to the instance. | `list(any)` | `[]` | no |
 | <a name="input_ebs_optimized"></a> [ebs\_optimized](#input\_ebs\_optimized) | (Optional) If true, the launched EC2 instance will be EBS-optimized. | `bool` | `null` | no |
@@ -153,7 +153,7 @@ No modules.
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | (Optional) Key name of the Key Pair to use for the instance. | `string` | `null` | no |
 | <a name="input_metadata_options"></a> [metadata\_options](#input\_metadata\_options) | (Optional) Customize the metadata options of the instance. | `map(string)` | <pre>{<br/>  "http_endpoint": "enabled",<br/>  "http_put_response_hop_limit": 1,<br/>  "http_tokens": "optional"<br/>}</pre> | no |
 | <a name="input_monitoring"></a> [monitoring](#input\_monitoring) | (Optional) If true, the launched EC2 instance will have detailed monitoring enabled. | `bool` | `null` | no |
-| <a name="input_os_credentials"></a> [os\_credentials](#input\_os\_credentials) | (Optional) Map of user names to explicit passwords. If a username is mapped to null, a random password will be auto-generated. | `map(string)` | `{}` | no |
+| <a name="input_os_credentials"></a> [os\_credentials](#input\_os\_credentials) | (Optional) Map of user names to explicit passwords. If omitted or if a username is mapped to null, a random password will be automatically generated and stored in AWS Secrets Manager. | `map(string)` | `{}` | no |
 | <a name="input_private_ip"></a> [private\_ip](#input\_private\_ip) | (Optional) Private IP address to associate with the instance in a VPC. | `string` | `null` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | (Optional) Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Putin_khuylo! | `bool` | `true` | no |
 | <a name="input_root_block_device"></a> [root\_block\_device](#input\_root\_block\_device) | (Optional) Customize details about the root block device of the instance. | `list(any)` | `[]` | no |
