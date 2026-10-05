@@ -19,17 +19,17 @@ mock_provider "aws" {
 
   mock_resource "aws_instance" {
     defaults = {
-      id                          = "i-0123456789abcdef0"
-      arn                         = "arn:aws:ec2:ca-central-1:123456789012:instance/i-0123456789abcdef0"
-      ami                         = "ami-12345678"
-      instance_type               = "t3.micro"
-      availability_zone           = "ca-central-1a"
-      subnet_id                   = "subnet-12345678"
-      vpc_security_group_ids      = ["sg-12345678"]
-      associate_public_ip_address = true
-      public_ip                   = "198.51.100.1"
-      private_ip                  = "10.0.1.50"
-      instance_state              = "running"
+      id                           = "i-0123456789abcdef0"
+      arn                          = "arn:aws:ec2:ca-central-1:123456789012:instance/i-0123456789abcdef0"
+      ami                          = "ami-12345678"
+      instance_type                = "t3.micro"
+      availability_zone            = "ca-central-1a"
+      subnet_id                    = "subnet-12345678"
+      vpc_security_group_ids       = ["sg-12345678"]
+      associate_public_ip_address  = true
+      public_ip                    = "198.51.100.1"
+      private_ip                   = "10.0.1.50"
+      instance_state               = "running"
       primary_network_interface_id = "eni-0123456789abcdef0"
     }
   }
